@@ -3,11 +3,11 @@ import './App.css';
 import {
   useQuery,
 } from '@tanstack/react-query';
-import IGithub from './IGithub';
+import IGithub from './interfaces/IGithub';
+import { getAsync } from './helpers/ApiService';
 
 const queryAsync = async (): Promise<IGithub> => {
-  const res = await fetch('https://api.github.com/repos/tannerlinsley/react-query');
-  return res.json();
+  return await getAsync<IGithub>('https://api.github.com/repos/tannerlinsley/react-query');
 };
 
 const App:FC = (): JSX.Element => {
@@ -27,6 +27,7 @@ const App:FC = (): JSX.Element => {
   }
 
   console.log('APP');
+
   return (
     <div className="App">
       <header className="App-header">
